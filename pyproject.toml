@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tally"
+version = "0.1.0"
+description = "Count words and lines in a text file."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+[project.scripts]
+tally = "tally:main"
+
+[tool.setuptools]
+packages = ["tally"]
