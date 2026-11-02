@@ -6,6 +6,8 @@ standard library and runs on Python 3.9 or later.
 This repository is the sample the Agent Blueprint hosted demo works on: visitors ask the agent for a
 small change here and get a pull request back.
 
+Note: changes here usually arrive as pull requests opened by the Agent Blueprint demo agent.
+
 ## Install
 
 ```bash
