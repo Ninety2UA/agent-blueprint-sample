@@ -6,6 +6,8 @@ Dump anything here: ideas, bugs, tasks, notes. New entries need no structure. Th
 
 _Add items here._
 
+- The version is set twice, in `pyproject.toml` and in `tally/__init__.py` (`__version__`), so a release must bump both. Consider one source, e.g. setuptools dynamic version `attr = "tally.__version__"`.
+
 ## Triaged
 
 _Items that have been reviewed and tagged but not yet started. Priority tags: P0 (this week), P1 (two weeks), P2 (this quarter), P3 (someday). Type tags: [bug] [feature] [research] [chore] [idea]._
