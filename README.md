@@ -12,6 +12,29 @@ small change here and get a pull request back.
 pip install -e .
 ```
 
+## Usage
+
+Given a file `sample.txt`:
+
+```text
+The quick brown fox
+jumps over the lazy dog
+```
+
+Count its words with `tally words` (or `python3 -m tally words`):
+
+```console
+$ tally words sample.txt
+9
+```
+
+Count its lines with `tally lines`:
+
+```console
+$ tally lines sample.txt
+2
+```
+
 ## Tests
 
 ```bash
