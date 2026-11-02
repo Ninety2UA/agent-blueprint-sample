@@ -12,6 +12,30 @@ small change here and get a pull request back.
 pip install -e .
 ```
 
+## Usage
+
+Given a file `notes.txt`:
+
+```text
+the quick brown fox
+jumps over
+the lazy dog
+```
+
+Count its words:
+
+```console
+$ tally words notes.txt
+9
+```
+
+Count its lines:
+
+```console
+$ tally lines notes.txt
+3
+```
+
 ## Tests
 
 ```bash
