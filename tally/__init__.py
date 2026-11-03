@@ -33,10 +33,13 @@ def run(command: str, path: Path) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Command-line entry point: tally words FILE, tally lines FILE."""
+    """Command-line entry point: tally words FILE, tally lines FILE, tally --version."""
     args = list(sys.argv[1:] if argv is None else argv)
+    if args == ["--version"]:
+        sys.stdout.write(f"tally {__version__}\n")
+        return 0
     if len(args) != 2 or args[0] not in COMMANDS:
-        sys.stderr.write("usage: tally (words|lines) FILE\n")
+        sys.stderr.write("usage: tally (words|lines) FILE | tally --version\n")
         return 2
     command, name = args
     path = Path(name)

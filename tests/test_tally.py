@@ -4,7 +4,7 @@ import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
-from tally import count_lines, count_words, main
+from tally import __version__, count_lines, count_words, main
 
 
 class CountTests(unittest.TestCase):
@@ -45,6 +45,14 @@ class CommandLineTests(unittest.TestCase):
         code, _, err = self.run_main("chars", str(self.path))
         self.assertEqual(code, 2)
         self.assertIn("usage", err)
+
+    def test_version_flag_prints_package_version(self):
+        code, out, err = self.run_main("--version")
+        self.assertEqual((code, out, err), (0, f"tally {__version__}\n", ""))
+
+    def test_version_matches_pyproject(self):
+        pyproject = Path(__file__).resolve().parent.parent / "pyproject.toml"
+        self.assertIn(f'version = "{__version__}"', pyproject.read_text(encoding="utf-8"))
 
     def test_missing_file(self):
         code, _, err = self.run_main("words", str(self.path) + ".missing")
