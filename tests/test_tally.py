@@ -1,4 +1,5 @@
 import io
+import re
 import tempfile
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
@@ -50,6 +51,30 @@ class CommandLineTests(unittest.TestCase):
         code, _, err = self.run_main("words", str(self.path) + ".missing")
         self.assertEqual(code, 1)
         self.assertIn("no such file", err)
+
+
+class ReadmeUsageTests(unittest.TestCase):
+    """The README's Usage examples must match what tally actually prints."""
+
+    def test_usage_examples_match_real_output(self):
+        readme = (Path(__file__).resolve().parent.parent / "README.md").read_text(encoding="utf-8")
+        match = re.search(r"^## Usage\n(.*?)(?=^## )", readme, re.S | re.M)
+        self.assertIsNotNone(match, "README has no ## Usage section")
+        usage = match.group(1)
+        sample = re.search(r"`(\S+)`[^`]*:\n\n```text\n(.*?)```", usage, re.S)
+        self.assertIsNotNone(sample, "Usage section shows no sample file")
+        name, content = sample.groups()
+        examples = re.findall(r"```console\n\$ tally (\w+) (\S+)\n(.*?)```", usage, re.S)
+        self.assertEqual({cmd for cmd, _, _ in examples}, {"words", "lines"})
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / name
+            path.write_text(content, encoding="utf-8")
+            for command, file_arg, expected in examples:
+                self.assertEqual(file_arg, name)
+                out = io.StringIO()
+                with redirect_stdout(out):
+                    code = main([command, str(path)])
+                self.assertEqual((code, out.getvalue()), (0, expected), command)
 
 
 if __name__ == "__main__":

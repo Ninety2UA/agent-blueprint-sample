@@ -12,6 +12,31 @@ small change here and get a pull request back.
 pip install -e .
 ```
 
+## Usage
+
+Given a file `notes.txt`:
+
+```text
+alpha beta
+gamma
+```
+
+Count its words:
+
+```console
+$ tally words notes.txt
+3
+```
+
+Count its lines (a trailing newline does not add a line):
+
+```console
+$ tally lines notes.txt
+2
+```
+
+Without installing, run `python3 -m tally` from the repository root in place of `tally`.
+
 ## Tests
 
 ```bash
