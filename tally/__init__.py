@@ -39,6 +39,9 @@ def main(argv: list[str] | None = None) -> int:
         sys.stderr.write("usage: tally (words|lines) FILE\n")
         return 2
     command, name = args
+    if not name:
+        sys.stderr.write("tally: FILE must not be empty\nusage: tally (words|lines) FILE\n")
+        return 2
     path = Path(name)
     if not path.is_file():
         sys.stderr.write(f"tally: no such file: {name}\n")

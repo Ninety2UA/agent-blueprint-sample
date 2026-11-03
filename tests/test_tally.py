@@ -46,6 +46,11 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(code, 2)
         self.assertIn("usage", err)
 
+    def test_empty_file_argument(self):
+        code, out, err = self.run_main("words", "")
+        self.assertEqual((code, out), (2, ""))
+        self.assertEqual(err, "tally: FILE must not be empty\nusage: tally (words|lines) FILE\n")
+
     def test_missing_file(self):
         code, _, err = self.run_main("words", str(self.path) + ".missing")
         self.assertEqual(code, 1)
