@@ -1,4 +1,4 @@
-"""tally: count words and lines in a text file."""
+"""tally: count words, lines and characters in a text file."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ from pathlib import Path
 
 __version__ = "0.1.0"
 
-COMMANDS = ("words", "lines")
+COMMANDS = ("words", "lines", "chars")
 
 
 def count_words(text: str) -> int:
@@ -22,6 +22,11 @@ def count_lines(text: str) -> int:
     return text.count("\n") + (0 if text.endswith("\n") else 1)
 
 
+def count_chars(text: str) -> int:
+    """Return the number of characters in text, newlines and other whitespace included."""
+    return len(text)
+
+
 def run(command: str, path: Path) -> int:
     """Run one command on the file at path and return its count."""
     text = path.read_text(encoding="utf-8")
@@ -29,14 +34,16 @@ def run(command: str, path: Path) -> int:
         return count_words(text)
     if command == "lines":
         return count_lines(text)
+    if command == "chars":
+        return count_chars(text)
     raise ValueError(f"unknown command: {command}")
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Command-line entry point: tally words FILE, tally lines FILE."""
+    """Command-line entry point: tally words FILE, tally lines FILE, tally chars FILE."""
     args = list(sys.argv[1:] if argv is None else argv)
     if len(args) != 2 or args[0] not in COMMANDS:
-        sys.stderr.write("usage: tally (words|lines) FILE\n")
+        sys.stderr.write("usage: tally (words|lines|chars) FILE\n")
         return 2
     command, name = args
     path = Path(name)
