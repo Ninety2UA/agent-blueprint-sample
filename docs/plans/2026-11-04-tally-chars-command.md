@@ -2,7 +2,7 @@
 
 > **For the executing agent:** use the ab-executing-plans skill to implement this plan task by task.
 
-> **Status:** IN PROGRESS
+> **Status:** COMPLETE
 
 **Objective:** A user can run `tally chars FILE` and see the number of characters in FILE, the same way `tally words FILE` and `tally lines FILE` print theirs, and can find the command in the README.
 
