@@ -18,6 +18,12 @@ pip install -e .
 python3 -m unittest
 ```
 
+## Changelog
+
+- **Unreleased** — added this Changelog section to the README.
+- **Initial release** — `tally` word and line counter with `words` and `lines` commands, Agent
+  Blueprint project scaffold, and tests.
+
 ## License
 
 MIT.
