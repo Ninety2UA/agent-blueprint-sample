@@ -12,6 +12,29 @@ small change here and get a pull request back.
 pip install -e .
 ```
 
+## Usage
+
+Give `tally` a command, `words` or `lines`, and a file. It prints the count to standard output.
+
+```bash
+tally words FILE
+tally lines FILE
+```
+
+For example, for a file `notes.txt` that holds these two lines:
+
+```text
+hello world
+second line here
+```
+
+```bash
+tally words notes.txt   # prints 5
+tally lines notes.txt   # prints 2
+```
+
+To run it from the project root without installing, use `python3 -m tally words FILE`.
+
 ## Tests
 
 ```bash
