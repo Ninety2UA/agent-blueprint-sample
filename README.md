@@ -18,6 +18,16 @@ pip install -e .
 python3 -m unittest
 ```
 
+## Greeting script
+
+The repository also includes a small standalone greeting script in `scripts/`, outside the `tally`
+package, so it needs no install.
+
+```bash
+python3 scripts/greet.py       # prints: Hello, World!
+python3 scripts/greet.py Ada   # prints: Hello, Ada!
+```
+
 ## License
 
 MIT.
